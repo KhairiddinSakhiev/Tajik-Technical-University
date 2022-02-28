@@ -1,0 +1,22 @@
+﻿@model PageInfoModel
+<section class="pager-section">
+    <div class="container">
+        <div class="pager-content text-center">
+            <h2>@Model.Info</h2>
+            <ul>
+                @foreach (var link in Model.Links)
+                {
+                    <li>
+                        <a href="@link.HyperLink" title="">@link.Title</a>
+                    </li>     
+                }
+               
+                <li>
+                    <span>@Model.Info</span>
+                </li>
+            </ul>
+        </div><!--pager-content end-->
+        <h2 class="page-titlee">Кафедра</h2>
+    </div>
+</section>
+
