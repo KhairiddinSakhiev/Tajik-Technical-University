@@ -7,5 +7,6 @@
         public string FacebookAccount { get; set; }
         public string InstagramAccount { get; set; }
         public string LinkedIn { get; set; }
+
     }
 }

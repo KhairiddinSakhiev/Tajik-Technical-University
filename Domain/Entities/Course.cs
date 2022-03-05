@@ -8,18 +8,12 @@ namespace Domain.Entities
     {
         public Course()
         {
-            TeacherCourseRelations = new List<TeacherCourseRelation>();
-            TimeTables = new List<TimeTable>();
+            LoadCourseRelations = new List<LoadCourseRelation>();            
         }
         public int Id { get; set; }
         [MaxLength(100)]
-        public string Title { get; set; }
-        public string Description { get; set; }
-        public int CourseSize { get; set; }
-        public int Duration { get; set; }
-        public decimal Price { get; set; }
-        
-        public virtual ICollection<TimeTable> TimeTables { get; set; }
-        public virtual ICollection<TeacherCourseRelation> TeacherCourseRelations { get; set; }
+        public string Title { get; set; }        
+                    
+        public virtual ICollection<LoadCourseRelation> LoadCourseRelations { get; set; }
     }
 }

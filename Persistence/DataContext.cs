@@ -15,27 +15,37 @@ namespace Persistence
         }
 
       
-        public DbSet<Order> Blogs { get; set; }
-        public DbSet<Comment> Comments { get; set; }
-        public DbSet<Skill> Skills { get; set; }
         public DbSet<Experience> Experiences { get; set; }
         public DbSet<Teacher> Teachers { get; set; }
-        public DbSet<Course> Courses { get; set; }
-        public DbSet<TimeTable> TimeTables { get; set; }
+        public DbSet<Course> Courses { get; set; } 
+        public DbSet<Load> Loads { get; set; }
+        public DbSet<Group> Groups { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            modelBuilder.Entity<TeacherCourseRelation>()
-                .HasKey(tcr => new {tcr.CourseId, tcr.TeacherId});
-            modelBuilder.Entity<TeacherCourseRelation>()
-                .HasOne(t => t.Teacher)
-                .WithMany(t => t.TeacherCourseRelations)
-                .HasForeignKey(t => t.TeacherId);
-            modelBuilder.Entity<TeacherCourseRelation>()
+            //Many to many relation teacher with course
+            modelBuilder.Entity<LoadCourseRelation>()
+                .HasKey(tcr => new {tcr.CourseId, tcr.LoadId});
+            modelBuilder.Entity<LoadCourseRelation>()
+                .HasOne(l => l.Load)
+                .WithMany(l => l.LoadCourseRelations)
+                .HasForeignKey(l => l.CourseId);
+            modelBuilder.Entity<LoadCourseRelation>()
                 .HasOne(c => c.Course)
-                .WithMany(c => c.TeacherCourseRelations)
-                .HasForeignKey(c => c.CourseId);
+                .WithMany(c => c.LoadCourseRelations)
+                .HasForeignKey(c => c.LoadId);
+            //Many to Many Relation Table Teacher with Load
+            modelBuilder.Entity<TeacherLoadRelation>()
+                .HasKey(tlr => new { tlr.LoadId, tlr.TeacherId });
+            modelBuilder.Entity<TeacherLoadRelation>()
+                .HasOne(tl => tl.Load)
+                .WithMany(tlr => tlr.TeacherLoadRelations)
+                .HasForeignKey(t => t.TeacherId);
+            modelBuilder.Entity<TeacherLoadRelation>()
+                .HasOne(tl => tl.Teacher)
+                .WithMany(tlr=>tlr.TeacherLoadRelations)
+                .HasForeignKey(tl=>tl.LoadId);
         }
     }
 }
