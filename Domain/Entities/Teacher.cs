@@ -12,6 +12,7 @@ namespace Domain.Entities
         {            
             Experiences = new List<Experience>();           
             TeacherLoadRelations = new List<TeacherLoadRelation>();
+            CreatedAt = DateTime.Now;
         }
         public int Id { get; set; }
         [MaxLength(30)]
@@ -46,8 +47,11 @@ namespace Domain.Entities
         public string Univer { get; set; }
         [MaxLength(100)]
         public string Specialty { get; set; }
+        public DateTime CreatedAt { get; set; }
         public virtual ICollection<Experience> Experiences { get; set; }                            
-        public virtual ICollection<TeacherLoadRelation> TeacherLoadRelations { get; set; }                        
+        public virtual ICollection<TeacherLoadRelation> TeacherLoadRelations { get; set; }  
+        public virtual ICollection<ScienceWork> ScienceWorks { get; set; }
+        
     }
 
     public enum Gender

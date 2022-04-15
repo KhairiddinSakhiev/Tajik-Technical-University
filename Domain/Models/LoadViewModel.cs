@@ -1,23 +1,16 @@
-﻿using System;
+﻿using Domain.Entities;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Domain.Entities
+namespace Domain.Models
 {
-    public class Load
+    public class LoadViewModel
     {
-        public Load()
-        {
-            groups = new List<Group>();
-            TeacherLoadRelations = new List<TeacherLoadRelation>();
-            LoadCourseRelations = new List<LoadCourseRelation>();
-            CreatedAt = DateTime.Now;
-        }
-        public int Id { get; set; }      
         public int Course { get; set; }
         public TypeOfEducation TypeOfEducation { get; set; }
-        public ICollection<Group> groups { get; set; }        
-        public int CountGroup { get; set; } 
+        public ICollection<Group> groups { get; set; }
+        public int CountGroup { get; set; }
         public int CountSubGroup { get; set; }
         public int CountStudents { get; set; }
         public int WorkCourse { get; set; }
@@ -34,13 +27,5 @@ namespace Domain.Entities
         public int StateExam { get; set; }
         public int DiplomProject { get; set; }
         public DateTime CreatedAt { get; set; }
-        public virtual ICollection<TeacherLoadRelation> TeacherLoadRelations { get; set; }
-        public virtual ICollection<LoadCourseRelation> LoadCourseRelations { get; set; }
-    }
-    public enum TypeOfEducation
-    {
-        Master,
-        Bacholor,
-        Phd
     }
 }

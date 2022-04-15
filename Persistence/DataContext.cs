@@ -13,13 +13,13 @@ namespace Persistence
             Database.Migrate();
             this.SeedV1();
         }
-
       
         public DbSet<Experience> Experiences { get; set; }
         public DbSet<Teacher> Teachers { get; set; }
         public DbSet<Course> Courses { get; set; } 
         public DbSet<Load> Loads { get; set; }
-        public DbSet<Group> Groups { get; set; }
+        public DbSet<Group> Groups { get; set; }        
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -45,7 +45,7 @@ namespace Persistence
             modelBuilder.Entity<TeacherLoadRelation>()
                 .HasOne(tl => tl.Teacher)
                 .WithMany(tlr=>tlr.TeacherLoadRelations)
-                .HasForeignKey(tl=>tl.LoadId);
+                .HasForeignKey(tl=>tl.LoadId);            
         }
     }
 }
