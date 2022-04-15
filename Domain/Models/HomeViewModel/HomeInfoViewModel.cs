@@ -6,6 +6,6 @@ namespace Domain.Models
     public class HomeInfoViewModel
     {
         public List<TeacherViewModel> Teachers { get; set; }
-        public List<OrderViewModel> Blogs { get; set; }
+  
     }
 }

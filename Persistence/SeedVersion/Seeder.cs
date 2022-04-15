@@ -10,6 +10,7 @@ namespace Persistence.SeedVersion
     {
         public static void SeedV1(this DataContext data)
         {
+            
         }
     }
 }

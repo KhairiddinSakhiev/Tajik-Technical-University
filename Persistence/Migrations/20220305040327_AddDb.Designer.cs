@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using Persistence;
@@ -9,9 +10,10 @@ using Persistence;
 namespace Persistence.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20220305040327_AddDb")]
+    partial class AddDb
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -112,9 +114,6 @@ namespace Persistence.Migrations
                     b.Property<int>("Course")
                         .HasColumnType("integer");
 
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp without time zone");
-
                     b.Property<int>("DiplomProject")
                         .HasColumnType("integer");
 
@@ -171,52 +170,6 @@ namespace Persistence.Migrations
                     b.ToTable("LoadCourseRelation");
                 });
 
-            modelBuilder.Entity("Domain.Entities.ScienceWork", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
-
-                    b.Property<int>("CountofPages")
-                        .HasColumnType("integer");
-
-                    b.Property<DateTime>("Created")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.Property<string>("NameOfWork")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Number")
-                        .HasColumnType("text");
-
-                    b.Property<int>("Output")
-                        .HasColumnType("integer");
-
-                    b.Property<string>("PublishedPlace")
-                        .HasColumnType("text");
-
-                    b.Property<int>("TeacherId")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("TypeOfWorkId")
-                        .HasColumnType("integer");
-
-                    b.Property<string>("Workload")
-                        .HasColumnType("text");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("TeacherId");
-
-                    b.HasIndex("TypeOfWorkId");
-
-                    b.ToTable("ScienceWork");
-                });
-
             modelBuilder.Entity("Domain.Entities.Teacher", b =>
                 {
                     b.Property<int>("Id")
@@ -225,9 +178,6 @@ namespace Persistence.Migrations
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
                     b.Property<DateTime>("BirthDate")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.Property<DateTime>("CreatedAt")
                         .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Degree")
@@ -313,21 +263,6 @@ namespace Persistence.Migrations
                     b.HasIndex("TeacherId");
 
                     b.ToTable("TeacherLoadRelation");
-                });
-
-            modelBuilder.Entity("Domain.Entities.TypeOfWork", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
-
-                    b.Property<string>("Title")
-                        .HasColumnType("text");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("TypeOfWork");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -565,23 +500,6 @@ namespace Persistence.Migrations
                     b.Navigation("Load");
                 });
 
-            modelBuilder.Entity("Domain.Entities.ScienceWork", b =>
-                {
-                    b.HasOne("Domain.Entities.Teacher", null)
-                        .WithMany("ScienceWorks")
-                        .HasForeignKey("TeacherId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Domain.Entities.TypeOfWork", "TypeOfWork")
-                        .WithMany("ScienceWorks")
-                        .HasForeignKey("TypeOfWorkId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("TypeOfWork");
-                });
-
             modelBuilder.Entity("Domain.Entities.TeacherLoadRelation", b =>
                 {
                     b.HasOne("Domain.Entities.Teacher", "Teacher")
@@ -670,14 +588,7 @@ namespace Persistence.Migrations
                 {
                     b.Navigation("Experiences");
 
-                    b.Navigation("ScienceWorks");
-
                     b.Navigation("TeacherLoadRelations");
-                });
-
-            modelBuilder.Entity("Domain.Entities.TypeOfWork", b =>
-                {
-                    b.Navigation("ScienceWorks");
                 });
 #pragma warning restore 612, 618
         }

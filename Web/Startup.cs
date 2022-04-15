@@ -12,8 +12,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Persistence;
 using Services.Services;
-using Services.Services.Blog;
 using Services.Services.Class;
+using Services.Services.Load;
 using Services.Services.Mapping;
 using Services.Services.Teacher;
 
@@ -35,8 +35,8 @@ namespace Web
             _services = services;
             services.AddAutoMapper(typeof(Mapping).Assembly);
             services.AddScoped<ITeacherService, TeacherService>();
-            services.AddScoped<IOrderService, OrderService>();
             services.AddScoped<ICourseService, CourseService>();
+            services.AddScoped<ILoadService, LoadService>();
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
             
             string connection = Configuration.GetConnectionString("DefaultConnection");

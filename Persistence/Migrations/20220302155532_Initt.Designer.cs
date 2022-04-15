@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using Persistence;
@@ -9,9 +10,10 @@ using Persistence;
 namespace Persistence.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20220302155532_Initt")]
+    partial class Initt
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -19,12 +21,64 @@ namespace Persistence.Migrations
                 .HasAnnotation("ProductVersion", "5.0.12")
                 .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
+            modelBuilder.Entity("Domain.Entities.Comment", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<int>("BlogId")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<string>("CreatedBy")
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.Property<string>("Email")
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.Property<string>("Message")
+                        .HasMaxLength(500)
+                        .HasColumnType("character varying(500)");
+
+                    b.Property<int?>("OrderId")
+                        .HasColumnType("integer");
+
+                    b.Property<int?>("ReplyId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("OrderId");
+
+                    b.HasIndex("ReplyId");
+
+                    b.ToTable("Comments");
+                });
+
             modelBuilder.Entity("Domain.Entities.Course", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<int>("CourseSize")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("text");
+
+                    b.Property<int>("Duration")
+                        .HasColumnType("integer");
+
+                    b.Property<decimal>("Price")
+                        .HasColumnType("numeric");
 
                     b.Property<string>("Title")
                         .HasMaxLength(100)
@@ -66,155 +120,33 @@ namespace Persistence.Migrations
                     b.ToTable("Experiences");
                 });
 
-            modelBuilder.Entity("Domain.Entities.Group", b =>
+            modelBuilder.Entity("Domain.Entities.Order", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-                    b.Property<int>("LoadId")
+                    b.Property<int>("CategoryId")
                         .HasColumnType("integer");
+
+                    b.Property<string>("Content")
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Title")
-                        .HasMaxLength(30)
-                        .HasColumnType("character varying(30)");
+                        .HasMaxLength(200)
+                        .HasColumnType("character varying(200)");
 
-                    b.HasKey("Id");
-
-                    b.HasIndex("LoadId");
-
-                    b.ToTable("Groups");
-                });
-
-            modelBuilder.Entity("Domain.Entities.Load", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
-
-                    b.Property<int>("Action")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("Consultation")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("CountGroup")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("CountStudents")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("CountSubGroup")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("Course")
-                        .HasColumnType("integer");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.Property<int>("DiplomProject")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("Exam")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("Experiment")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("Internship")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("KMRO")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("Lecture")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("ProjectCourse")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("Seminars")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("StateExam")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("Test")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("TypeOfEducation")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("WorkCourse")
+                    b.Property<int>("UserId")
                         .HasColumnType("integer");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Loads");
-                });
-
-            modelBuilder.Entity("Domain.Entities.LoadCourseRelation", b =>
-                {
-                    b.Property<int>("CourseId")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("LoadId")
-                        .HasColumnType("integer");
-
-                    b.HasKey("CourseId", "LoadId");
-
-                    b.HasIndex("LoadId");
-
-                    b.ToTable("LoadCourseRelation");
-                });
-
-            modelBuilder.Entity("Domain.Entities.ScienceWork", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
-
-                    b.Property<int>("CountofPages")
-                        .HasColumnType("integer");
-
-                    b.Property<DateTime>("Created")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.Property<string>("NameOfWork")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Number")
-                        .HasColumnType("text");
-
-                    b.Property<int>("Output")
-                        .HasColumnType("integer");
-
-                    b.Property<string>("PublishedPlace")
-                        .HasColumnType("text");
-
-                    b.Property<int>("TeacherId")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("TypeOfWorkId")
-                        .HasColumnType("integer");
-
-                    b.Property<string>("Workload")
-                        .HasColumnType("text");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("TeacherId");
-
-                    b.HasIndex("TypeOfWorkId");
-
-                    b.ToTable("ScienceWork");
+                    b.ToTable("Blogs");
                 });
 
             modelBuilder.Entity("Domain.Entities.Teacher", b =>
@@ -226,13 +158,6 @@ namespace Persistence.Migrations
 
                     b.Property<DateTime>("BirthDate")
                         .HasColumnType("timestamp without time zone");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.Property<string>("Degree")
-                        .HasMaxLength(100)
-                        .HasColumnType("character varying(100)");
 
                     b.Property<string>("Description")
                         .HasColumnType("text");
@@ -267,10 +192,6 @@ namespace Persistence.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("character varying(100)");
 
-                    b.Property<string>("Job")
-                        .HasMaxLength(100)
-                        .HasColumnType("character varying(100)");
-
                     b.Property<string>("LastName")
                         .HasMaxLength(30)
                         .HasColumnType("character varying(30)");
@@ -283,51 +204,50 @@ namespace Persistence.Migrations
                         .HasMaxLength(13)
                         .HasColumnType("character varying(13)");
 
-                    b.Property<string>("Specialty")
-                        .HasMaxLength(100)
-                        .HasColumnType("character varying(100)");
-
-                    b.Property<string>("Title")
-                        .HasMaxLength(100)
-                        .HasColumnType("character varying(100)");
-
-                    b.Property<string>("Univer")
-                        .HasMaxLength(300)
-                        .HasColumnType("character varying(300)");
-
                     b.HasKey("Id");
 
                     b.ToTable("Teachers");
                 });
 
-            modelBuilder.Entity("Domain.Entities.TeacherLoadRelation", b =>
+            modelBuilder.Entity("Domain.Entities.TeacherCourseRelation", b =>
                 {
-                    b.Property<int>("LoadId")
+                    b.Property<int>("CourseId")
                         .HasColumnType("integer");
 
                     b.Property<int>("TeacherId")
                         .HasColumnType("integer");
 
-                    b.HasKey("LoadId", "TeacherId");
+                    b.HasKey("CourseId", "TeacherId");
 
                     b.HasIndex("TeacherId");
 
-                    b.ToTable("TeacherLoadRelation");
+                    b.ToTable("TeacherCourseRelation");
                 });
 
-            modelBuilder.Entity("Domain.Entities.TypeOfWork", b =>
+            modelBuilder.Entity("Domain.Entities.TimeTable", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-                    b.Property<string>("Title")
-                        .HasColumnType("text");
+                    b.Property<int>("CourseId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("DayOfWeek")
+                        .HasColumnType("integer");
+
+                    b.Property<TimeSpan>("EndTime")
+                        .HasColumnType("interval");
+
+                    b.Property<TimeSpan>("StartTime")
+                        .HasColumnType("interval");
 
                     b.HasKey("Id");
 
-                    b.ToTable("TypeOfWork");
+                    b.HasIndex("CourseId");
+
+                    b.ToTable("TimeTables");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -524,6 +444,21 @@ namespace Persistence.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("Domain.Entities.Comment", b =>
+                {
+                    b.HasOne("Domain.Entities.Order", "Order")
+                        .WithMany("Comments")
+                        .HasForeignKey("OrderId");
+
+                    b.HasOne("Domain.Entities.Comment", "Reply")
+                        .WithMany()
+                        .HasForeignKey("ReplyId");
+
+                    b.Navigation("Order");
+
+                    b.Navigation("Reply");
+                });
+
             modelBuilder.Entity("Domain.Entities.Experience", b =>
                 {
                     b.HasOne("Domain.Entities.Teacher", "Teacher")
@@ -535,70 +470,34 @@ namespace Persistence.Migrations
                     b.Navigation("Teacher");
                 });
 
-            modelBuilder.Entity("Domain.Entities.Group", b =>
+            modelBuilder.Entity("Domain.Entities.TeacherCourseRelation", b =>
                 {
-                    b.HasOne("Domain.Entities.Load", "Load")
-                        .WithMany("groups")
-                        .HasForeignKey("LoadId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Load");
-                });
-
-            modelBuilder.Entity("Domain.Entities.LoadCourseRelation", b =>
-                {
-                    b.HasOne("Domain.Entities.Load", "Load")
-                        .WithMany("LoadCourseRelations")
+                    b.HasOne("Domain.Entities.Course", "Course")
+                        .WithMany("TeacherCourseRelations")
                         .HasForeignKey("CourseId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Domain.Entities.Course", "Course")
-                        .WithMany("LoadCourseRelations")
-                        .HasForeignKey("LoadId")
+                    b.HasOne("Domain.Entities.Teacher", "Teacher")
+                        .WithMany("TeacherCourseRelations")
+                        .HasForeignKey("TeacherId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Course");
 
-                    b.Navigation("Load");
-                });
-
-            modelBuilder.Entity("Domain.Entities.ScienceWork", b =>
-                {
-                    b.HasOne("Domain.Entities.Teacher", null)
-                        .WithMany("ScienceWorks")
-                        .HasForeignKey("TeacherId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Domain.Entities.TypeOfWork", "TypeOfWork")
-                        .WithMany("ScienceWorks")
-                        .HasForeignKey("TypeOfWorkId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("TypeOfWork");
-                });
-
-            modelBuilder.Entity("Domain.Entities.TeacherLoadRelation", b =>
-                {
-                    b.HasOne("Domain.Entities.Teacher", "Teacher")
-                        .WithMany("TeacherLoadRelations")
-                        .HasForeignKey("LoadId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Domain.Entities.Load", "Load")
-                        .WithMany("TeacherLoadRelations")
-                        .HasForeignKey("TeacherId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Load");
-
                     b.Navigation("Teacher");
+                });
+
+            modelBuilder.Entity("Domain.Entities.TimeTable", b =>
+                {
+                    b.HasOne("Domain.Entities.Course", "Course")
+                        .WithMany("TimeTables")
+                        .HasForeignKey("CourseId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Course");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -654,30 +553,21 @@ namespace Persistence.Migrations
 
             modelBuilder.Entity("Domain.Entities.Course", b =>
                 {
-                    b.Navigation("LoadCourseRelations");
+                    b.Navigation("TeacherCourseRelations");
+
+                    b.Navigation("TimeTables");
                 });
 
-            modelBuilder.Entity("Domain.Entities.Load", b =>
+            modelBuilder.Entity("Domain.Entities.Order", b =>
                 {
-                    b.Navigation("groups");
-
-                    b.Navigation("LoadCourseRelations");
-
-                    b.Navigation("TeacherLoadRelations");
+                    b.Navigation("Comments");
                 });
 
             modelBuilder.Entity("Domain.Entities.Teacher", b =>
                 {
                     b.Navigation("Experiences");
 
-                    b.Navigation("ScienceWorks");
-
-                    b.Navigation("TeacherLoadRelations");
-                });
-
-            modelBuilder.Entity("Domain.Entities.TypeOfWork", b =>
-                {
-                    b.Navigation("ScienceWorks");
+                    b.Navigation("TeacherCourseRelations");
                 });
 #pragma warning restore 612, 618
         }

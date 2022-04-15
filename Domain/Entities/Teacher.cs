@@ -9,10 +9,10 @@ namespace Domain.Entities
     public class Teacher
     {
         public Teacher()
-        {
-            Skills = new List<Skill>();
-            Experiences = new List<Experience>();
-            TeacherCourseRelations = new List<TeacherCourseRelation>();
+        {            
+            Experiences = new List<Experience>();           
+            TeacherLoadRelations = new List<TeacherLoadRelation>();
+            CreatedAt = DateTime.Now;
         }
         public int Id { get; set; }
         [MaxLength(30)]
@@ -33,12 +33,32 @@ namespace Domain.Entities
         [MaxLength(100)]
         public string FacebookAdress { get; set; }
         [MaxLength(100)]
-        public string InstagramAdress { get; set; }
+        public string InstagramAdress { get; set; }        
         [MaxLength(100)]
-        public string LinkedIn { get; set; }
-        public virtual ICollection<Skill> Skills { get; set; }
-        public virtual ICollection<Experience> Experiences { get; set; }
-        public virtual ICollection<TeacherCourseRelation> TeacherCourseRelations { get; set; }
-                        
+        public string LinkedIn { get; set; } 
+        public Gender Gender { get; set; }
+        [MaxLength(100)]
+        public string Title { get; set; }
+        [MaxLength(100)]
+        public string Job { get; set; }
+        [MaxLength(100)]
+        public string Degree { get; set; }
+        [MaxLength(300)]
+        public string Univer { get; set; }
+        [MaxLength(100)]
+        public string Specialty { get; set; }
+        public DateTime CreatedAt { get; set; }
+        public virtual ICollection<Experience> Experiences { get; set; }                            
+        public virtual ICollection<TeacherLoadRelation> TeacherLoadRelations { get; set; }  
+        public virtual ICollection<ScienceWork> ScienceWorks { get; set; }
+        
     }
+
+    public enum Gender
+    {
+        Male,
+        Female,
+    }
+   
+  
 }

@@ -2,10 +2,10 @@
 
 namespace Domain.Entities
 {
-    public class TeacherCourseRelation
+    public class LoadCourseRelation
     {
-        public int TeacherId { get; set; }
-        public Teacher Teacher { get; set; }
+        public int LoadId { get; set; }
+        public Load Load { get; set; }
         public int CourseId { get; set; }
         public Course Course { get; set; }
     }

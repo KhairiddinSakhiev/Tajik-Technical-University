@@ -14,6 +14,7 @@ namespace Domain.Models
         public string FacebookAccount { get; set; }
         public string InstagramAccount { get; set; }
         public string LinkedIn { get; set; }
-        
+        public Gender Gender { get; set; }
+
     }
 }
