@@ -218,7 +218,7 @@ a {
 }
 
 .container {
-    max-width: 1200px;
+    max-width: 1400px;
     /*padding: 80px 15px;*/
 }
 
@@ -227,7 +227,14 @@ h2,
 h3 {
     font-family: Poppins, sans-serif;
 }
-
+.univer-info p{
+    font-size: 1.5em;
+    padding: 5px 0;
+}
+.carousel{
+    max-width: 1400px;
+    margin: auto;
+}
 p {
     color: #575757;
     font-size: 14.23px;
@@ -308,8 +315,8 @@ header .header-content {
 }
 
     header .header-content .logo {
-        -ms-flex: 0 0 33%;
-        flex: 0 0 33%;
+        /* -ms-flex: 0 0 33%;
+        flex: 0 0 33%; */
         max-width: 33%;
     }
 
@@ -355,15 +362,13 @@ header .navigation-bar {
     padding: 23px 0 25px;
 }
 
-    header .navigation-bar nav {
-        -ms-flex: 0 0 75%;
-        flex: 0 0 75%;
-        max-width: 75%;
-    }
+    /* header .navigation-bar nav {
+     
+    } */
 
         header .navigation-bar nav ul li {
             display: inline-block;
-            margin-right: 59px;
+            margin-right: 13px;
             position: relative;
         }
 
@@ -416,7 +421,7 @@ header .navigation-bar {
             position: absolute;
             top: 100%;
             left: 0;
-            width: 210px;
+            width: 310px;
             background-color: #fff;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             border-radius: 20px;
@@ -459,22 +464,17 @@ header .navigation-bar {
                 padding-left: 20px;
             }
 
-.main-section {
+/* .main-section {
     background-image: url(../img/banner-bg.png);
     position: relative;
-}
+} */
 
     .main-section main-baner {
         background-image: url(../img/banner-bg.png);
         position: relative;
     }
 
-
-    .main-section,
-    .main-section .elements-bg {
-        background-repeat: no-repeat;
-        background-position: 100% 45%;
-    }
+/*   */
 
         .main-section .elements-bg {
             position: absolute;
@@ -494,10 +494,6 @@ header .navigation-bar {
     position: absolute;
     left: 10px;
     top: 12.5%;
-}
-
-.main-banner {
-    
 }
 
     .main-banner .banner-text > h2 {
@@ -985,8 +981,7 @@ header .navigation-bar {
                     margin-right: 12px;
                 }
 
-    .course-section .all-btn {
-        float: right;
+    .course-section .all-btn {        
         display: inline-block;
         color: #155799;
         font-size: 14.23px;
@@ -1421,6 +1416,12 @@ footer {
         left: 50%;
         transform: translate(-50%, -50%);
     }
+    .about-sec{
+        margin-bottom: 20px;
+    }
+    .page-content p{
+        text-indent: 50px;
+    }
 
 .about-page-content {
     padding: 138px 0 0;
@@ -1631,7 +1632,7 @@ footer {
             }
 
 .page-content {
-    padding: 140px 0;
+    padding: 10px 0;
 }
 
     .page-content.style2 {
@@ -1872,10 +1873,8 @@ footer {
         font-size: 14.23px;
     }
 
-.blog-post.single {
-    border-bottom: 1px solid #e8e3e3;
-    padding-bottom: 19px;
-    margin-bottom: 77px;
+.blog-post.single {   
+    padding-bottom: 19px;    
 }
 
     .blog-post.single p {
@@ -1941,7 +1940,7 @@ footer {
         margin-bottom: 26px;
     }
 
-        .blog-post.single blockquote p {
+        .blog-post.single blockquote h3 {
             color: #2b2b2b;
             font-size: 18.29px;
             font-weight: 600;
@@ -2350,7 +2349,7 @@ footer {
     }
 
     .blog-section.posts-page .blog-posts .blog-post .blog-info h3 {
-        font-size: 36.58px;
+        font-size: 30px;
         font-weight: 500;
         position: relative;
         line-height: 44.71px;
@@ -2423,13 +2422,14 @@ footer {
     }
 
     .blog-section.posts-page .blog-posts .blog-post.quote-post {
-        border: 1px solid #eae5e5;
+        border: 1px solid #f37335;
         border-radius: 20px;
         text-align: center;
-        padding: 50px 100px 51px;
-        background-image: url(../img/element-bg2.png);
-        background-repeat: no-repeat;
+        padding: 20px;
+        background-image: url(../img/element-bg2.png);      
         background-position: 50%;
+        font-size: 2em;
+        color: #fdc830;
     }
 
         .blog-section.posts-page .blog-posts .blog-post.quote-post.no-bg {
@@ -2492,8 +2492,7 @@ footer {
             z-index: 9;
         }
 
-        .blog-section.posts-page .blog-posts .blog-post.quote-post .blog-info h3 {
-            font-size: 20.32px;
+        .blog-section.posts-page .blog-posts .blog-post.quote-post .blog-info h3 {            
             line-height: 26.42px;
             position: relative;
             z-index: 1;
@@ -2972,11 +2971,21 @@ footer {
         }
 
     .class-single-content h3 {
-        color: #2b2b2b;
+        color: #978d8d;
         font-size: 20px;
         line-height: 26px;
         font-weight: 500;
-        margin-bottom: 23px;
+        margin-bottom: 3px;
+        text-align: center;
+    }
+    .class-single-content span{                               
+        border-radius: 10%;
+        color: rgb(123, 107, 23);
+        padding: 5px;
+    }
+    .fadeInUp{
+        box-shadow: 1px 1px 10px;
+        margin-bottom: 10px;
     }
 
     .class-single-content .class-gallery .row {
@@ -3017,6 +3026,12 @@ footer {
 
 .class-sidebar {
     position: relative;
+    /* top: -143px; */
+    max-width: 293px;
+    margin-left: auto;
+}
+.class-sidebar-main {
+    position: relative;
     top: -143px;
     max-width: 293px;
     margin-left: auto;
@@ -3032,7 +3047,7 @@ footer {
 
     .class-sidebar .widget-information {
         background-color: #fff;
-        padding: 47px 20px 50px;
+        padding: 20px 20px;   
         border: 2px solid #f9b493;
         border-radius: 20px;
     }
@@ -3079,8 +3094,8 @@ footer {
                 }
 
         .class-sidebar .widget-information .tech-info {
-            padding-top: 25px;
-            text-align: center;
+            /* padding-top: 25px; */
+            text-align: center;            
         }
 
             .class-sidebar .widget-information .tech-info .tech-tble {
@@ -3090,17 +3105,25 @@ footer {
                 flex-wrap: wrap;
                 -ms-flex-align: center;
                 align-items: center;
-                margin-bottom: 40px;
+                margin-bottom: 20px;
             }
 
                 .class-sidebar .widget-information .tech-info .tech-tble > img {
+                    border-radius: 5px;
+                }
+                .class-sidebar .widget-information .tech-info .tech-tble .border-50 {
                     border-radius: 50%;
                 }
+                .class-sidebar .widget-information .tech-info h1 {
+                    margin: 10px;
+                    font-size: large;
+                    color: black;
+                }
 
-                .class-sidebar .widget-information .tech-info .tech-tble .tch-info {
+                /* .class-sidebar .widget-information .tech-info .tech-tble .tch-info {
                     padding-left: 16px;
                     text-align: left;
-                }
+                } */
 
                     .class-sidebar .widget-information .tech-info .tech-tble .tch-info h3 {
                         color: #2b2b2b;
@@ -3636,3 +3659,38 @@ footer {
     .teacher-icon a:hover {
         opacity:0.5;
     }
+
+.w-11{
+    width: 11rem;
+    padding: 10px 0;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+}
+.w-18{
+    width: 15rem;
+    padding: 10px 0;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+}
+
+.card-title{
+    color: black;
+    text-align: center;
+    padding: 5px;
+    font-size: 1.3rem;
+}
+.leaders h3{    
+    text-align: center;   
+    font-size: 1.3rem;
+    color: grey;
+}
+
+.leaders{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.row{
+    max-width: 1300px;
+    margin: auto;
+}

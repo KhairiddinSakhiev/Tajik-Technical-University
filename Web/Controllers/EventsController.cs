@@ -14,7 +14,11 @@ namespace Web.Controllers
             return View();
         }
 
-        public IActionResult Schedule()
+        public IActionResult History()
+        {
+            return View();
+        }
+        public IActionResult Department()
         {
             return View();
         }
@@ -28,6 +32,7 @@ namespace Web.Controllers
         {
             return View();
         }
+
 
         
     }
