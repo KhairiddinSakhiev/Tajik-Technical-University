@@ -18,7 +18,7 @@ namespace Web.Controllers
         {
             return View();
         }
-        public IActionResult Department()
+        public IActionResult HomeDepartments()
         {
             return View();
         }
@@ -29,6 +29,34 @@ namespace Web.Controllers
         }
         
         public IActionResult Teachers()
+        {
+            return View();
+        }
+        public IActionResult ASU()
+        {
+            return View();
+        }
+        public IActionResult ARTI()
+        {
+            return View();
+        }
+        public IActionResult SHASK()
+        {
+            return View();
+        }
+        public IActionResult FO()
+        {
+            return View();
+        }
+        public IActionResult MO()
+        {
+            return View();
+        }
+        public IActionResult ITH()
+        {
+            return View();
+        }
+        public IActionResult TIHM()
         {
             return View();
         }
