@@ -1210,7 +1210,7 @@ header .navigation-bar {
 
 footer {
     background-color: #f2f7fd;
-    padding: 219px 0 72px;
+    padding: 119px 0 72px;
 }
 
     footer .top-footer {
@@ -2922,6 +2922,7 @@ footer {
         font-size: 14px;
         line-height: 24px;
         margin-bottom: 25px;
+        text-align: justify;
     }
 
     .class-single-content .meta-box {
@@ -3025,10 +3026,12 @@ footer {
         }
 
 .class-sidebar {
-    position: relative;
-    /* top: -143px; */
+    position: relative;    
     max-width: 293px;
     margin-left: auto;
+}
+.class-slidebar {    
+    top:-143px;    
 }
 .class-sidebar-main {
     position: relative;
@@ -3693,4 +3696,8 @@ footer {
 .row{
     max-width: 1300px;
     margin: auto;
+}
+
+.carousel-inner{
+    border-radius: 20px;
 }
